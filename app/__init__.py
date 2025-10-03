@@ -6,6 +6,9 @@ from flask import Flask
 def create_app():
   app = Flask(__name__)
   
+  # Definindo chave secreta unica (temporario)
+  app.secret_key = "new_keypass!269"
+  
   # Importando os Blueprints
   from app.auth.routes import auth
   from app.dashboard.routes import dashboard

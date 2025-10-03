@@ -70,8 +70,18 @@
                   <label for="email" class="fw-bold">Email: </label>
                 </div>
                 <div class="col-8">
-                  <input type="email" id="email" name="cpf" class="formStyle no-spinners form-control rounded-pill"
+                  <input type="email" id="email" name="email" class="formStyle no-spinners form-control rounded-pill"
                     required>
+                </div>
+              </div>
+              <!-- Documento do Profissional -->
+              <div class="row mb-3">
+                <div class="col-4">
+                  <label for="cpf" class="fw-bold">Documento: </label>
+                </div>
+                <div class="col-8">
+                  <input type="text" id="cpf" name="cpf" class="formStyle no-spinners form-control rounded-pill"
+                    placeholder="000.000.000-00" required>
                 </div>
               </div>
               <!-- Setor do Profissional -->
@@ -127,7 +137,7 @@
     crossorigin="anonymous"></script>
 
   <!-- Forma correta de referenciar arquivo na pasta static no Flask -->
-  <script src="{{ url_for('static', filename='login/js/toast.js') }}"></script>
+  <!-- <script src="{{ url_for('static', filename='login/js/toast.js') }}"></script> -->
 </body>
 
 </html>
