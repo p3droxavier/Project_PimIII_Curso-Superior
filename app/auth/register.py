@@ -1,3 +1,9 @@
+"""
+  ' ln 24 ' - Retirar espaços e caracteres especias
+  ' ln 24 ' - Adicionar verificação de quantidade e @#!345 etc na senha
+"""
+
+
 # Realiza o cadastro do usuário
 
 import bcrypt
@@ -6,41 +12,59 @@ import os
 
 # Função para cadastrar um novo funcionario
 def registerProfissional():
-  nome = input("Digite o seu nome: ")
-  email = input("Digite um email valido: ")
-  document = input("Digite seu CPF. OBS, sem caracteres especiais: ")
-  contato = int(input("Digite seu numero para contato:")) # Retirar espaços e caracteres especias
-  cargo = input("Qual o seu cargo? ")
-  especializacao = input("Qual a sua especialização? ")
-  senha = input("Crie uma senha: ") # Adicionar verificação de quantidade e @#!345 etc na senha
-  confirmSenha = input("Confirme sua senha: ")
-  
-  
-  # ============ Chamada as Validações ============
-  
-  if not validarEmail(email):
-    return None
-  
-  if not verificacaoDeSenha(senha, confirmSenha):
-    return None
-  
-  hashPassword = senhaCriptografada(senha)
-  
-  # ================================================
+  try:
+      nome = input("Digite o seu nome: ")
+      email = input("Digite um email valido: ")
+      
+      # Chama a validação do email
+      if not validarEmail(email):
+        raise ValueError("Email invalido")
+      
+      document = input("Digite seu CPF. OBS, sem caracteres especiais: ")
+      contato = int(input("Digite seu numero para contato:")) 
+      cargo = input("Qual o seu cargo? ")
+      especializacao = input("Qual a sua especialização? ")
+      senha = input("Crie uma senha: ") # 
 
+      confirmSenha = input("Confirme sua senha: ")
+      
+      # Chama a validação da senha e confirmar senha
+      if not verificacaoDeSenha(senha, confirmSenha):
+        raise ValueError("As senhas não coincidem")
+      
+      # Criptografa a senha
+      hashPassword = senhaCriptografada(senha)
+      
+      # Dicionario com os dados do profissional. Contendo chave e valor.
+      new_user =  {
+        "nome": nome,
+        "email": email,
+        "document": document,
+        "contato": contato,
+        "cargo": cargo,
+        "especializacao": especializacao,
+        "senha": hashPassword,
+        "isLogged":0 # Verifica se alguem  esta logado
+      }
+      
+      # Realiza o cadastro do profissional
+      if os.path.exists('./data/users.json'):
+        with open('./data/users.json', 'r') as file:
+          users = json.load(file)
+        users.append(new_user)
+        
+        with open('./data/users.json', 'w') as file:
+          json.dump(users, file, indent=4)
 
-  # Dicionario com os dados do profissional. Contendo chave e valor.
-  return {
-    "nome": nome,
-    "email": email,
-    "document": document,
-    "contato": contato,
-    "cargo": cargo,
-    "especializacao": especializacao,
-    "senha": hashPassword,
-    #"confirmsenha": confirmsenha,
-    "isLogged":0 # Verifica se alguems esta logado
-  }
+      else:
+        with open('./data/users.json', 'w') as file:
+          json.dump([new_user], file, indent=4)
+
+        
+  except ValueError as e:
+    print("Erro")
+    return
+
   
   
   # ============ Validações ============

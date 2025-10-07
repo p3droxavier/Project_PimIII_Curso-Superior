@@ -8,47 +8,70 @@ import bcrypt
 def login():
   nome = input("Digite o seu nome: ")
   email = input("Digite um email valido: ")
-  document = input("Digite seu CPF.")
+  document = input("Digite seu CPF: ")
   cargo = input("Qual o seu cargo? ")
   especializacao = input("Qual a sua especialização? ")
-  senha = input("Crie uma senha: ")
+  senha = input("Coloque sua senha: ")
   
+  caminho = './data/users.json'
   
-  if os.path.exists('./data/users.json'):
-    with open('./data/users.json', 'r') as file:
-      users = json.load(file)
+  # Verifica se a pasta existe
+  if not os.path.exists(caminho):
+    print('Não foi possivel encontrar o arquivo')
+    return
+  
+  # Carrega os usuário 
+  with open(caminho, 'r') as file:
+    users = json.load(file)
+    
+  usuario_encontrado = False
+    
+  for user in users:
+    #Verificação de nome, email, document, cargo, especialização e senha
+    if (user['nome'] == nome and 
+        user['email'] == email and 
+        user['document'] == document and 
+        user['cargo'] == cargo and 
+        user['especializacao'] == especializacao):
       
-    for user in users:
-      if (user['nome'] == nome and 
-          user['email'] == email and 
-          user['document'] == document and 
-          user['cargo'] == cargo and 
-          user['especializacao'] == especializacao):
-        
+        usuario_encontrado = True
+      
         if bcrypt.checkpw(senha.encode('utf-8'), user['senha'].encode('utf-8')):
-          user['isLogged'] = 1
-          with open('./data/users.json', 'w') as file:
+          # Desloga todos os outros usuários antes
+          for u in users:
+            u['isLogged'] = 0
+            
+          user['isLogged'] = 1 # Marca este como logado
+          
+          with open(caminho, 'w') as file:
             json.dump(users, file, indent=4)
-        else:
-          return print('Senha incorreta! ')
-        break
+            
+          print('\nLogin bem sucedido!')
+          return
         
-      return print('Dados Invalidos! ')
-  else: 
-    return print('Não foi possivel encontrar o arquivo de usuário! ')
+        else: 
+          print('Senha incorreta! Certifique-se de que escreveu a senha correta')
+          return
+  
+  if not usuario_encontrado:
+    print('Dados Invalidos! Nenhum usuário encontrado com essas informações!')
+
   
   
   
 # Função para deslogar o profissional 
 def signOut():
-  if os.path.exists('./data/users.json'):
-    with open('./data/users.json', 'r') as file:
+  
+  caminho = './data/users.json'
+  
+  if os.path.exists(caminho):
+    with open(caminho, 'r') as file:
       users = json.load(file)
       
       for user in users:
         if user['isLogged'] == 1:
           
           user['isLogged'] = 0
-          with open('./data/users.json', 'w') as file:
+          with open(caminho, 'w') as file:
             json.dump(users, file, indent=4)
             return print('Você saiu do sistema! ')

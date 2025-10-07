@@ -1,5 +1,15 @@
 [
     {
+        "nome": "Miguel",
+        "email": "miguel@gmail.com",
+        "document": "22",
+        "contato": 22,
+        "cargo": "ss",
+        "especializacao": "ss",
+        "senha": "$2b$12$0vqK2HS3O4rEEKhkvY.iRuBoek7by6.tk66Fxnyne1s1YpsIoHzLW",
+        "isLogged": 0
+    },
+    {
         "nome": "teste",
         "email": "teste@gmail.com",
         "document": "22",
