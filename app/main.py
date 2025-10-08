@@ -3,29 +3,15 @@
 
 # Se não estiver, jogará para o Register(Cadastro) e depois Login() 
 
-from auth.register import registerProfissional
-from auth.login import login
-import bcrypt
-import json
-import os
-
-# Verifica se tem algum usuário logado
-def getLoggedProfissional():
-  if os.path.exists('data/users.json'):
-    with open('data/users.json') as file:
-      users = json.load(file)
-      for user in users:
-        if user.get("isLogged") == 1:
-          return user
-  return None
-
+from app.auth.register import registerProfissional
+from app.auth.login import login
 
 
 def home():
   while True:
     
     print(f"\nOlá, Bem Vindo!")
-    print("Digite: \n1 - Logar\n2 - Cadastrar\n3 Encerrar o programa")
+    print("Digite: \n1 - Logar\n2 - Cadastrar\n3 - Encerrar o programa")
     option = input("-> ")
     
     if option == "1":

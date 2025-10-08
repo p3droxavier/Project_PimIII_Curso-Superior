@@ -13,7 +13,7 @@ def login():
   especializacao = input("Qual a sua especialização? ")
   senha = input("Coloque sua senha: ")
   
-  caminho = './data/users.json'
+  caminho = 'app/data/users.json'
   
   # Verifica se a pasta existe
   if not os.path.exists(caminho):
@@ -47,7 +47,14 @@ def login():
             json.dump(users, file, indent=4)
             
           print('\nLogin bem sucedido!')
+          
+          # Chama a função de gerar a UI da dashboard
+          from app.auth.menu.menu import menu
+          menu()
+          
           return
+        
+          
         
         else: 
           print('Senha incorreta! Certifique-se de que escreveu a senha correta')
@@ -62,7 +69,7 @@ def login():
 # Função para deslogar o profissional 
 def signOut():
   
-  caminho = './data/users.json'
+  caminho = 'app/data/users.json'
   
   if os.path.exists(caminho):
     with open(caminho, 'r') as file:
@@ -74,4 +81,4 @@ def signOut():
           user['isLogged'] = 0
           with open(caminho, 'w') as file:
             json.dump(users, file, indent=4)
-            return print('Você saiu do sistema! ')
+            return print('\nVocê saiu do sistema! ')

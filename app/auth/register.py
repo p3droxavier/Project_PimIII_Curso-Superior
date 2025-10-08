@@ -48,17 +48,25 @@ def registerProfissional():
       }
       
       # Realiza o cadastro do profissional
-      if os.path.exists('./data/users.json'):
-        with open('./data/users.json', 'r') as file:
+      caminho = 'app/data/users.json'
+      if os.path.exists(caminho):
+        with open(caminho, 'r') as file:
           users = json.load(file)
         users.append(new_user)
         
-        with open('./data/users.json', 'w') as file:
+        with open(caminho, 'w') as file:
           json.dump(users, file, indent=4)
 
       else:
-        with open('./data/users.json', 'w') as file:
+        with open(caminho, 'w') as file:
           json.dump([new_user], file, indent=4)
+          
+          
+      
+      # Chama a função de gerar a UI da dashboard
+      # from app.auth.menu.menu import menu
+      from app.main import home
+      home()
 
         
   except ValueError as e:
