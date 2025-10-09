@@ -8,6 +8,7 @@ from app.auth.login import login
 
 
 def home():
+  # UI interface de interação Profissional
   while True:
     
     print(f"\nOlá, Bem Vindo!")
@@ -31,3 +32,4 @@ def home():
 
 if __name__ == "__main__":
   home()
+

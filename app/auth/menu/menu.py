@@ -1,6 +1,7 @@
 # Aqui ficara o menu de opções do sistema 
 # Caminho - app/auth/menu/menu.py
-from ..login import login
+# from ..login import login
+from app.auth.menu.register_paciente import cadastrar_paciente
 from app.auth.login import signOut
 import json
 import os
@@ -28,12 +29,12 @@ def menu():
     #   continue
     
     print(f"\nBem vindo ao sistema, {user['nome']}!")
-    print("Digite: \n1 - Cadastrar um novo pasciente\n2 - Cadastrar um novo exame\n 3 - Listar todos os pascientes\n4 - Deslogar")
+    print("Digite: \n1 - Cadastrar um novo pasciente\n2 - Cadastrar um novo exame\n3 - Listar todos os pascientes\n4 - Deslogar")
     
     opcao = input("-> ")
     
     if opcao == "1":
-      print("\nCadastrar um novo pasciente")
+      cadastrar_paciente()
     elif opcao == "2":
       print("\nCadastrar um novo exame")
     elif opcao == "3":
@@ -44,5 +45,8 @@ def menu():
     else:
       print("\nOpção invalida! Tente novamente")
       
+      
+if __name__ == '__main__':
+  menu()
     
     

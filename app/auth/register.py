@@ -21,6 +21,7 @@ def registerProfissional():
         raise ValueError("Email invalido")
       
       document = input("Digite seu CPF. OBS, sem caracteres especiais: ")
+      
       contato = int(input("Digite seu numero para contato:")) 
       cargo = input("Qual o seu cargo? ")
       especializacao = input("Qual a sua especialização? ")
