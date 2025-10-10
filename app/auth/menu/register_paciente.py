@@ -9,26 +9,35 @@ def cadastrar_paciente():
     email = input("E-mail ")
     # pacientes = {"nome": nome, "cpf": cpf, "E-mail": email}
 
+
     novo_paciente = {
         "nome": nome,
         "cpf": cpf,
         "email": email
     }
 
-    # O 'r' é de ler em ingles
-    # as file, faz com que dos dados do arquivo apelidado de file
-    arquivo = 'app/data/pacientes/pacientes.json'
-    if os.path.exists(arquivo):
-        with open(arquivo, 'r') as file: 
-            users = json.load(file)
-            print("teste02")
-        users.append(novo_paciente)
-        # O 'w' é de write, escrever, ja que vc vai escrever um novo pasciente
-        with open(arquivo, 'w') as file:
-            json.dump(users, file, indent=4)
+
+    caminho = 'app/data/pacientes/pacientes.json'
+    
+    if not os.path.exists(caminho) or os.path.getsize(caminho) == 0:
+      users = []
+      
     else:
-        with open(arquivo, 'w') as file:
-            json.dump([novo_paciente], file, indent=4)
+      with open(caminho, "r", encoding="utf-8") as file:
+        conteudo = file.read().strip()
+        
+        if not conteudo:
+          users = []
+          
+        else:
+          users = json.loads(conteudo)
+          if not isinstance(users, list):
+            users = []
+            
+    users.append(novo_paciente)
+    
+    with open(caminho, "w", encoding="utf-8") as file:
+      json.dump(users, file, indent=2, ensure_ascii=False)
 
 
 
