@@ -37,9 +37,25 @@ class Historico:
     
     # Aqui guarda o que sera registrado a cada ação feita 
     registro = {
-      "usuario":usuario,
-      "acao":acao,
-      "data":datetime.now().strftime("%d/%m/%y %H:%M:%S") # Salva no formato Dia, Mes, Ano | Hora, Minuto, Segundo
+      "Usuário":usuario,
+      "Ação Realizada":acao,
+      "Data da ação":datetime.now().strftime("%d/%m/%y %H:%M:%S") # Salva no formato Dia, Mes, Ano | Hora, Minuto, Segundo
+    }
+    
+    dados = self._carregar()
+    dados.append(registro)
+    self._salvar(dados)
+    
+    
+    
+  def registrarHistoricoPaciente(self, acao, paciente, email, profissional, especializacao_prof):
+    registro = {
+      "Acao Realizada":acao,
+      "Paciente": paciente,
+      "Email do paciente":email,
+      "Profissional": profissional,
+      "Especializacao do Profissional":especializacao_prof,
+      "Data da ação":datetime.now().strftime("%d/%m/%y %H:%M:%S")
     }
     
     dados = self._carregar()
