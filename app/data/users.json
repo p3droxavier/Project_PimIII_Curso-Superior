@@ -1,22 +1,22 @@
 [
-  {
-    "nome": "aaa",
-    "email": "aa@gmail.com",
-    "document": "22",
-    "contato": 22,
-    "cargo": "ww",
-    "especializacao": "ww",
-    "senha": "$2b$12$qaWiNuWhR610cwWDbd.y8e6amAtbXkAmKYOlm0fGCIRkdv8.GNHaW",
-    "isLogged": 0
-  },
-  {
-    "nome": "Pedro",
-    "email": "pedro@gmail.com",
-    "document": "22",
-    "contato": 22,
-    "cargo": "ss",
-    "especializacao": "ss",
-    "senha": "$2b$12$/wpkUDSZLPrxS0zpe6npbeswFykoFvc5jXRH0RjWU383lP5140vbm",
-    "isLogged": 0
-  }
+    {
+        "nome": "aaa",
+        "email": "aa@gmail.com",
+        "document": "22",
+        "contato": 22,
+        "cargo": "ww",
+        "especializacao": "ww",
+        "senha": "$2b$12$qaWiNuWhR610cwWDbd.y8e6amAtbXkAmKYOlm0fGCIRkdv8.GNHaW",
+        "isLogged": 0
+    },
+    {
+        "nome": "Pedro",
+        "email": "pedro@gmail.com",
+        "document": "22",
+        "contato": 22,
+        "cargo": "ss",
+        "especializacao": "ss",
+        "senha": "$2b$12$/wpkUDSZLPrxS0zpe6npbeswFykoFvc5jXRH0RjWU383lP5140vbm",
+        "isLogged": 1
+    }
 ]
