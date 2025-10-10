@@ -9,6 +9,7 @@
 import bcrypt
 import json
 import os
+from app.utils.historico_utils import Historico
 
 # Função para cadastrar um novo funcionario
 def registerProfissional():
@@ -58,7 +59,7 @@ def registerProfissional():
       # Abrindo arquivo para leitura 
       else: 
         with open(caminho, "r", encoding="utf-8") as file:
-          conteudo = file.read().strip() # le o conteudo do arqivo como string, remove espaços em branco 
+          conteudo = file.read().strip() # le o conteudo do arquivo como string, remove espaços em branco 
           
           # Depois do strip o conteudo for uma string vazia "", não ha dados validos
           if not conteudo:
@@ -75,11 +76,18 @@ def registerProfissional():
       with open(caminho, "w", encoding="utf-8") as file:
         json.dump(users, file, indent=2, ensure_ascii=False)
         
+        
+      # Fazendo o salvamento do histórico
+      historico_paciente = "app/data/historico_user/historico_user.json"
+      historico = Historico(arquivo=historico_paciente)
+      historico.registrar(acao="Cadastro de usuário", usuario=new_user["nome"])
+        
       
       # Chama a função de gerar a UI da dashboard
       # from app.auth.menu.menu import menu
       from app.main import home
       home()
+      
 
         
   except ValueError as e:
