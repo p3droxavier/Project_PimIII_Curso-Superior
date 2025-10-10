@@ -3,6 +3,7 @@
 import os
 import json
 import bcrypt
+from app.utils.historico_utils import Historico
 
 # Função para fazer o login do funcionário
 def login():
@@ -14,6 +15,10 @@ def login():
   senha = input("Coloque sua senha: ")
   
   caminho = 'app/data/users.json'
+  
+  user_login = {
+    "nome": nome,
+  }
   
   # Verifica se a pasta existe
   if not os.path.exists(caminho):
@@ -47,6 +52,13 @@ def login():
             json.dump(users, file, indent=4)
             
           print('\nLogin bem sucedido!')
+          
+          
+          # Salvando a ação no histórico
+          historico_user = "app/data/historico_user/historico_user.json"
+          historico = Historico(arquivo=historico_user)
+          historico.registrar("Login do usuário", usuario=user_login["nome"])
+          
           
           # Chama a função de gerar a UI da dashboard
           from app.auth.menu.menu import menu

@@ -77,9 +77,9 @@ def registerProfissional():
         json.dump(users, file, indent=2, ensure_ascii=False)
         
         
-      # Fazendo o salvamento do histórico
-      historico_paciente = "app/data/historico_user/historico_user.json"
-      historico = Historico(arquivo=historico_paciente)
+      # Salvando a ação no histórico
+      historico_user = "app/data/historico_user/historico_user.json"
+      historico = Historico(arquivo=historico_user)
       historico.registrar(acao="Cadastro de usuário", usuario=new_user["nome"])
         
       
