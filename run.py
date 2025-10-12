@@ -1,4 +1,3 @@
-# run.py
 # Entrada do sistema. Redireciona para o main
 from app.main import home
 

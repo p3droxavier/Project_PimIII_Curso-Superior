@@ -1,11 +1,3 @@
-"""
-  ' ln 24 ' - Retirar espaços e caracteres especias
-  ' ln 24 ' - Adicionar verificação de quantidade e @#!345 etc na senha
-"""
-
-
-# Realiza o cadastro do usuário
-
 import bcrypt
 import json
 import os
@@ -14,28 +6,25 @@ from app.utils.historico_utils import Historico
 # Função para cadastrar um novo funcionario
 def registerProfissional():
   try:
+      print("\n=== CADASTRE-SE ===")
       nome = input("Digite o seu nome: ")
       email = input("Digite um email valido: ")
+      if not validarEmail(email): # Chama a validação do email
+        return False
       
-      # Chama a validação do email
-      if not validarEmail(email):
-        raise ValueError("Email invalido")
-      
-      document = input("Digite seu CPF. OBS, sem caracteres especiais: ")
+      document = input("Digite seu CPF: ")
+      if not validarCpfUser(document): # Chama a validação do CPF
+        raise ValueError("\nCPF inválido.")
       
       contato = int(input("Digite seu numero para contato:")) 
       cargo = input("Qual o seu cargo? ")
       especializacao = input("Qual a sua especialização? ")
       senha = input("Crie uma senha: ") # 
-
       confirmSenha = input("Confirme sua senha: ")
+      if not verificacaoDeSenha(senha, confirmSenha):# Chama a validação da senha e confirmar senha
+        raise ValueError("\nAs senhas não coincidem")
       
-      # Chama a validação da senha e confirmar senha
-      if not verificacaoDeSenha(senha, confirmSenha):
-        raise ValueError("As senhas não coincidem")
-      
-      # Criptografa a senha
-      hashPassword = senhaCriptografada(senha)
+      hashPassword = senhaCriptografada(senha) # Criptografa a senha
       
       # Dicionario com os dados do profissional. Contendo chave e valor.
       new_user =  {
@@ -49,7 +38,7 @@ def registerProfissional():
         "isLogged":0 # Verifica se alguem  esta logado
       }
       
-      # Realiza o cadastro do profissional
+      # Caminho do arquivo onde sera salvo o usuário
       caminho = 'app/data/users.json'
       
       # Verifica a exixtencia e o tamanho do arquivo
@@ -84,32 +73,41 @@ def registerProfissional():
         
       
       # Chama a função de gerar a UI da dashboard
-      # from app.auth.menu.menu import menu
       from app.main import home
       home()
       
 
         
   except ValueError as e:
-    print("Erro")
+    print("Erro ao fazer o cadastro!")
     return
 
   
   
-  # ============ Validações ============
-  # Validando email
+# ============ Validações ============
+# Validação de CPF 
+def validarCpfUser(document):
+  if len(document) < 11:
+      print("Erro")
+      return False
+  return True
+
+
+# Validando email
 def validarEmail(email):
   if "@" in email and "." in email and "com" in email:
     return True
-  print("Email Invalido! ")
+  print("\nEmail invalido")
   return False 
+
 
 # Verificação de senha && # Adicionar verificação de quantidade e @#!345 etc na senha
 def verificacaoDeSenha(senha, confirmSenha):
   if senha != confirmSenha:
-    print("As senhas não coincidem! ")
+    print("\n As senhas não coincidem! ")
     return False
   return True
+
 
 # Criptografia da senha
 def senhaCriptografada(senha):

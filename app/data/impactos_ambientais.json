@@ -1,0 +1,12 @@
+[
+  {
+    "usuario": "Ana Julia",
+    "exame": "Holter",
+    "impacto": {
+      "papel": 0,
+      "energia_kwh": 1,
+      "residuo_reagente": 5
+    },
+    "Data da ação": "12/10/2025 01:57:11"
+  }
+]

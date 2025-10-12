@@ -1,26 +1,22 @@
-# Aqui ficara a verificação se tem alguem logado
-# Se estiver um usuário logado ira levar ele para a 1° camada do sistema
-
-# Se não estiver, jogará para o Register(Cadastro) e depois Login() 
+# Entrada do sistema
 
 from app.auth.register import registerProfissional
 from app.auth.login import login
 
-
+# === UI interface de interação Profissional ===
 def home():
-  # UI interface de interação Profissional
+
   while True:
-    
-    print(f"\nOlá, Bem Vindo!")
+    print("\n=== Olá, Bem Vindo! ===")
     print("Digite: \n1 - Logar\n2 - Cadastrar\n3 - Encerrar o programa")
     option = input("-> ")
-    
+    # Para fazer o login no sistema
     if option == "1":
       login()
-      
+    # Para Cadastrar o usuário (profissional) no sistema
     elif option == "2":
       registerProfissional()
-            
+    # Encerra o programa 
     elif option == "3":
       print("Encerrando o programa")
       break
@@ -29,7 +25,7 @@ def home():
       print("Opção inválida! Tente novamente mais tarde.")
   
 
-
+# Serve para poder rodar o sistema a partir desse arquivo
 if __name__ == "__main__":
   home()
 

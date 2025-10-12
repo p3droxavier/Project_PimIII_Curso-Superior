@@ -1,7 +1,8 @@
 # Aqui ficara o menu de opções do sistema 
-# Caminho - app/auth/menu/menu.py
-# from ..login import login
 from app.auth.menu.register_paciente import cadastrar_paciente
+from app.auth.menu.clinico.menu import estudos_clinicos
+from app.auth.menu.farmaceuticos.gerenciar_estudos import gerenciar_estudos
+from app.auth.menu.clinico.exames import gerar_relatorio_ambiental
 from app.auth.login import signOut
 import json
 import os
@@ -10,43 +11,44 @@ import os
 def getLoggedProfissional():
   caminho = 'app/data/users.json'
   
-  if os.path.exists(caminho):
-    with open(caminho, 'r') as file:
-      users = json.load(file)
-      for user in users:
-        if user.get("isLogged") == 1:
-          return user
-  return None
+  if os.path.exists(caminho):   # se o arquivo existir, ira abri-lo
+    with open(caminho, 'r') as file: # # abre o arquivo no formato read 'r'
+      users = json.load(file) # Guarda os dados do usuário na variavel
+      for user in users: # Loop para mostrar todos os usuários
+        if user.get("isLogged") == 1: # Dentre os usuários ira pegar apenas o que tem 'isLogged = 1'
+          return user # retorna esse usuário
+  return None # Se o arquivo estiver corrompido, ou nenhum usuário logado, retornará none
 
 
 def menu():
-  
+  # Interface UI do Sistema
   while True:
+    # Guarda os dados do usuário logado
     user = getLoggedProfissional()
-    # if not user:
-    #   print("\n Ainda não esta logado?? Faça o seu login agora!")
-    #   login()
-    #   continue
-    
+    # Retorna o nome do usuário junto das boas vindas
     print(f"\nBem vindo ao sistema, {user['nome']}!")
-    print("Digite: \n1 - Cadastrar um novo pasciente\n2 - Cadastrar um novo exame\n3 - Listar todos os pascientes\n4 - Deslogar")
+    print("Digite: \n1 - Cadastrar um novo pasciente\n2 - Gerenciar estudos clinícos\n3 - Gerenciar estudos farmacêutico\n4 - Gerar relarorio ambiental\n5 - Deslogar")
     
     opcao = input("-> ")
-    
+    # Cadastrar um novo paciente
     if opcao == "1":
       cadastrar_paciente()
+    # Navegar na sessão de Gerenciar estudos clinícos 
     elif opcao == "2":
-      print("\nCadastrar um novo exame")
+      estudos_clinicos()
+    # Navega na sessão de Gerenciar estudos farmacêutico
     elif opcao == "3":
-      print("\nListar todos os pascientes")
+      gerenciar_estudos()
+    # Se a opção for igual a 4, interrompe o fluxo do loop e saira dessa UI
     elif opcao == "4":
-      signOut()
+      gerar_relatorio_ambiental() # Gera o relatorio ambiental
+    elif opcao == "5":
+      signOut() # Chama a função signout para deslogar o usuáriio
       break
     else:
+      # Se a opção excolhia não for de 1 a 4, retornara essa mensagem
       print("\nOpção invalida! Tente novamente")
       
-      
-if __name__ == '__main__':
-  menu()
+
     
     

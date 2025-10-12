@@ -1,12 +1,12 @@
 [
   {
-    "usuario": "Pedro",
-    "acao": "Cadastro de usuário",
-    "data": "09/10/25 23:30:15"
+    "Usuário": "Pedro",
+    "Ação Realizada": "Login do usuário",
+    "Data da ação": "12/10/25 01:51:45"
   },
   {
-    "usuario": "Pedro",
-    "acao": "Login do usuário",
-    "data": "10/10/25 11:26:13"
+    "Usuário": "Pedro",
+    "Ação Realizada": "Login do usuário",
+    "Data da ação": "12/10/25 01:53:55"
   }
 ]

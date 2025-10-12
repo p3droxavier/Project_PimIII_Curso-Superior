@@ -1,12 +1,12 @@
-# Realiza o login do funcionário
-
 import os
 import json
 import bcrypt
 from app.utils.historico_utils import Historico
 
+
 # Função para fazer o login do funcionário
 def login():
+  print("\n === FAÇA O LOGIN ===")
   nome = input("Digite o seu nome: ")
   email = input("Digite um email valido: ")
   document = input("Digite seu CPF: ")
@@ -16,13 +16,16 @@ def login():
   
   caminho = 'app/data/users.json'
   
+  
+  # Retorna o nome do usuário
   user_login = {
     "nome": nome,
   }
   
+  
   # Verifica se a pasta existe
   if not os.path.exists(caminho):
-    print('Não foi possivel encontrar o arquivo')
+    print('\nNão foi possivel encontrar o arquivo')
     return
   
   # Carrega os usuário 
@@ -66,14 +69,12 @@ def login():
           
           return
         
-          
-        
         else: 
-          print('Senha incorreta! Certifique-se de que escreveu a senha correta')
+          print('\nSenha incorreta! Certifique-se de que escreveu a senha correta')
           return
   
   if not usuario_encontrado:
-    print('Dados Invalidos! Nenhum usuário encontrado com essas informações!')
+    print('\nDados Invalidos! Nenhum usuário encontrado com essas informações!')
 
   
   
