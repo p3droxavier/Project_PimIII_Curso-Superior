@@ -102,7 +102,7 @@ Sua estrutura utiliza Python no back-end, garantindo eficiência no processament
 </p>
 
 
-## Paciente com os Exames ja Feitos (Simulando os dados salvos no Banco de Dados)
+## Paciente com os Exames ja Feitos 
 
 <p align="center">
 <img src="./app/img/UI_passo_15.png" alt="Rastreio de Ação" width="600" />
