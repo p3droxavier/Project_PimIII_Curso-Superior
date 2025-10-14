@@ -1,7 +1,7 @@
 # PIM III (Projeto Integrado Multidisciplinar III)
 
 ## O que é o PIM?
-O PIM (Projeto Integrado Multidisciplinar), tem como o objetivo integrar conhecimentos obtidos com as aulas práticas e teóricas do curso superior Analise e Desenvolvimento de Sistemas no desenvolvimento de um sistema funcional e seguro que cumpre com as normas de cuidado com o meio ambiente e auxilia no desenvolvimento e testes farmacêuticos.
+O PIM (Projeto Integrado Multidisciplinar), tem como o objetivo integrar conhecimentos obtidos com as aulas práticas e teóricas do curso superior Analise e Desenvolvimento de Sistemas no desenvolvimento de um sistema funcional e seguro que cumpre com as normas de cuidado com o meio ambiente e auxilia no desenvolvimento e testes funcionais.
 
 
 ## Sobre o Sistema Desenvolvido
