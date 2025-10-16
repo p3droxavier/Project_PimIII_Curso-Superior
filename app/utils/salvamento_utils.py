@@ -7,10 +7,11 @@ class Salvamento:
     
     # Verifica se o arquivo existe,  e se o seu tamanho é igual a 0
     if not os.path.exists(self.arquivo) or os.path.getsize(arquivo) == 0:
+      lista = []
       
       with open(self.arquivo, "w", encoding="utf-8") as file:
-        json.dump([], file, indent=2, ensure_ascii=False)
-      
+        json.dump(lista, file, indent=2, ensure_ascii=False)
+        
 
   # Carrega o arquivo para salvar
   def _carregar(self):
