@@ -43,14 +43,14 @@ def registerProfissional():
       # Faz o salvamento do usuário no arquivo .json
       caminho_salvamento = 'app/data/users.json'
       salvar = Salvamento(arquivo=caminho_salvamento)
-      salvar.registrar(dados=new_user)
+      salvar.registrar_usuario(dados=new_user)
 
         
         
       # Salvando a ação no histórico
       historico_user = "app/data/historico_user/historico_user.json"
       historico = Historico(arquivo=historico_user)
-      historico.registrar_usuario(acao="Cadastro de usuário", usuario=new_user["nome"])
+      historico.registrar(acao="Cadastro de usuário", usuario=new_user["nome"])
         
       
       # Chama a função de gerar a UI da dashboard
